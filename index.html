@@ -1,0 +1,2563 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>Dedicatoria</title>
+
+<style>
+:root{
+  --bg:#000;
+  --primary:#09f;
+  --secondary:#0cf;
+  --text:#cdebff;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html,body{
+  width:100%;
+  height:100%;
+  background:var(--bg);
+  color:var(--text);
+  font-family:system-ui,sans-serif;
+  overflow:hidden;
+  touch-action:none;
+}
+
+.screen{
+  position:fixed;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  text-align:center;
+  padding:20px;
+  z-index:10;
+  transition:opacity 1s,transform 1s;
+}
+
+.screen.out{
+  opacity:0;
+  transform:scale(1.15);
+  pointer-events:none;
+}
+
+.hidden{
+  display:none!important;
+}
+
+#bgstars{
+  position:fixed;
+  inset:0;
+  z-index:0;
+}
+
+/* CORAZÓN */
+.heart{
+  font-size:clamp(48px,12vw,80px);
+  animation:pulse 1.6s ease-in-out infinite;
+  filter:drop-shadow(0 0 18px var(--primary));
+}
+
+@keyframes pulse{
+  50%{
+    transform:scale(1.18);
+  }
+}
+
+h2{
+  font-weight:300;
+  font-size:clamp(20px,5vw,30px);
+  text-shadow:0 0 14px var(--primary);
+}
+
+p.sub{
+  opacity:.75;
+}
+
+/* FOTO DE YOELITO */
+.inicio-foto{
+  width:min(180px,55vw);
+  height:min(180px,55vw);
+  object-fit:cover;
+  border-radius:50%;
+  border:3px solid var(--primary);
+
+  box-shadow:
+    0 0 15px var(--primary),
+    0 0 35px var(--primary);
+
+  margin:0 0 2px;
+
+  animation:fotoEntrada 1.2s ease;
+}
+
+@keyframes fotoEntrada{
+  from{
+    opacity:0;
+    transform:scale(.7);
+  }
+
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+/* INPUT */
+input{
+  background:#ffffff10;
+  border:1px solid var(--primary);
+  border-radius:30px;
+  padding:12px 20px;
+  color:var(--text);
+  font-size:16px;
+  text-align:center;
+  outline:none;
+  width:min(280px,80vw);
+  box-shadow:0 0 14px #0003;
+}
+
+input:focus{
+  box-shadow:0 0 18px var(--primary);
+}
+
+/* BOTONES */
+button{
+  cursor:pointer;
+  background:linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary)
+  );
+
+  color:#001;
+  border:0;
+  border-radius:30px;
+  padding:12px 30px;
+  font-size:16px;
+  font-weight:600;
+
+  box-shadow:0 0 18px var(--primary);
+
+  transition:transform .2s;
+}
+
+button:hover{
+  transform:scale(1.06);
+}
+
+/* MENSAJES DE CONTRASEÑA */
+#err{
+  color:#ffb6c9;
+  min-height:20px;
+  font-size:15px;
+  text-shadow:0 0 8px #ff4f7b;
+}
+
+.shake{
+  animation:shake .4s;
+}
+
+@keyframes shake{
+  25%{
+    transform:translateX(-10px);
+  }
+
+  75%{
+    transform:translateX(10px);
+  }
+}
+
+/* PANTALLA INICIO */
+#start{
+  cursor:pointer;
+}
+
+#start .heart{
+  font-size:clamp(70px,18vw,120px);
+}
+
+/* GALAXIA */
+#galaxy{
+  position:fixed;
+  inset:0;
+  opacity:0;
+  transition:opacity 2.5s;
+}
+
+#galaxy.on{
+  opacity:1;
+}
+
+/* INTERFAZ */
+#ui{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:5;
+  opacity:0;
+  transition:opacity 2s 1s;
+}
+
+#ui.on{
+  opacity:1;
+}
+
+#title{
+  position:absolute;
+  top:5vh;
+  width:100%;
+  text-align:center;
+  padding:0 16px;
+
+  font-size:clamp(22px,5.5vw,48px);
+  font-weight:300;
+
+  color:var(--text);
+
+  text-shadow:
+    0 0 20px var(--primary),
+    0 0 40px var(--primary);
+}
+
+.fab{
+  position:absolute;
+  bottom:max(20px,env(safe-area-inset-bottom));
+  pointer-events:auto;
+}
+
+#msgBtn{
+  left:50%;
+  transform:translateX(-50%);
+}
+
+#msgBtn:hover{
+  transform:translateX(-50%) scale(1.06);
+}
+
+#musicBtn{
+  right:18px;
+  padding:12px 16px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+/* BARRAS DE MÚSICA */
+.bars{
+  display:flex;
+  gap:2px;
+  align-items:flex-end;
+  height:14px;
+}
+
+.bars i{
+  width:3px;
+  height:4px;
+  background:#001;
+  border-radius:2px;
+}
+
+.playing .bars i{
+  animation:eq .8s ease-in-out infinite;
+}
+
+.playing .bars i:nth-child(2){
+  animation-delay:.2s;
+}
+
+.playing .bars i:nth-child(3){
+  animation-delay:.4s;
+}
+
+@keyframes eq{
+  50%{
+    height:14px;
+  }
+}
+
+/* MODAL */
+#modal{
+  position:fixed;
+  inset:0;
+  z-index:20;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+
+  background:#0008;
+  backdrop-filter:blur(6px);
+
+  opacity:0;
+  pointer-events:none;
+
+  transition:opacity .5s;
+}
+
+#modal.on{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.card{
+  max-width:520px;
+  max-height:80vh;
+  overflow:auto;
+
+  padding:30px;
+
+  border-radius:22px;
+
+  background:#0a1020cc;
+
+  border:1px solid var(--primary);
+
+  box-shadow:
+    0 0 40px #0006,
+    0 0 25px var(--primary);
+
+  transform:translateY(30px) scale(.95);
+
+  transition:transform .5s;
+
+  text-align:left;
+
+  touch-action:pan-y;
+}
+
+#modal.on .card{
+  transform:none;
+}
+
+.card h3{
+  font-weight:400;
+  margin-bottom:14px;
+  text-align:center;
+  font-size:24px;
+  text-shadow:0 0 12px var(--primary);
+}
+
+.card p{
+  line-height:1.7;
+  margin-bottom:12px;
+  font-size:clamp(14px,3.8vw,16px);
+}
+
+.card button{
+  display:block;
+  margin:18px auto 0;
+}
+</style>
+</head>
+
+
+<body>
+
+<canvas id="bgstars"></canvas>
+
+
+<!-- =====================================================
+     PANTALLA 1: CONTRASEÑA
+     ===================================================== -->
+
+<section id="pass" class="screen">
+
+  <div class="heart">💙</div>
+
+  <h2>Para Yoelito</h2>
+
+  <!-- FOTO DE YOELITO -->
+  <img
+    src="assets/images/yoelito.jpg"
+    class="inicio-foto"
+    alt="Para Yoelito"
+  >
+
+  <p class="sub">
+    Dime la contraseña
+  </p>
+
+  <input
+    id="pw"
+    type="password"
+    placeholder="Contraseña"
+    autocomplete="off"
+  >
+
+  <div id="err"></div>
+
+  <button id="enter">
+    ENTRAR
+  </button>
+
+</section>
+
+
+<!-- =====================================================
+     PANTALLA 2: TOCA PARA COMENZAR
+     ===================================================== -->
+
+<section id="start" class="screen hidden">
+
+  <div class="heart">💙</div>
+
+  <h2>
+    Toca para comenzar
+  </h2>
+
+</section>
+
+
+<!-- GALAXIA -->
+
+<div id="galaxy"></div>
+
+
+<!-- INTERFAZ -->
+
+<div id="ui">
+
+  <div id="title"></div>
+
+  <button id="msgBtn" class="fab">
+    Aquí tienes algo para ti 💙
+  </button>
+
+  <button id="musicBtn" class="fab playing">
+
+    <span class="bars">
+      <i></i>
+      <i></i>
+      <i></i>
+    </span>
+
+    ♪
+
+  </button>
+
+</div>
+
+
+<!-- =====================================================
+     MODAL DEL MENSAJE
+     ===================================================== -->
+
+<div id="modal">
+
+  <div class="card">
+
+    <h3 id="mTitle"></h3>
+
+    <div id="mBody"></div>
+
+    <button id="close">
+      Cerrar
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- THREE.JS -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+
+<script>
+
+/* =====================================================
+   CONFIGURACIÓN CENTRAL
+   ===================================================== */
+
+const CONFIG = {
+
+  /* CONTRASEÑA REAL */
+  password: "1234",
+
+
+  /* TÍTULO PRINCIPAL */
+
+  title: "Feliz 30💙",
+
+  titleStyle:{
+    size:"",
+    font:"Georgia, serif",
+    color:"",
+    glow:20
+  },
+
+
+  /* TEMA */
+
+  theme:"BLUE",
+
+  custom:{
+    primary:"#00ff99",
+    secondary:"#99ffcc",
+    text:"#e8fff4"
+  },
+
+
+  /* MÚSICA */
+
+  music:{
+    src:"assets/audio/musica.mp3",
+    volume:0.5,
+    loop:true
+  },
+
+
+  /* FRASES */
+
+  phrases:[
+
+    "Gracias por estar en mi vida 💙",
+
+    "Siempre puedes contar conmigo",
+
+    "Nunca dejes de sonreír",
+
+    "Eres una persona muy especial",
+
+    "Me alegra haberte conocido"
+
+  ],
+
+
+  phraseStyle:{
+    font:"Georgia, serif",
+    size:34,
+    opacity:0.85,
+    glow:12
+  },
+
+
+  /* FOTOS DE LA GALAXIA */
+
+  photos:[
+  "assets/images/foto1.png",
+  "assets/images/foto2.png",
+  "assets/images/foto3.png"
+],
+
+
+  photoStyle:{
+    baseSize:34,
+    sizeVariation:0.35,
+    border:3
+  },
+
+
+  /* MENSAJE */
+
+  messageTitle:"Ratita",
+
+  message:`
+
+    Aquí tienes tus Hot Wheels jajaja… mentira. 🥹💙
+
+¿Sabes? El día que me diste ese ramo tan bonito, la verdad no sabía cómo sentirme. Estaba nerviosa, feliz, rara jajaja… pero sobre todo, feliz.
+
+Como te conté, yo nunca recibía nada en esa fecha. Siempre fui la que hacía ramitos para las demás chicas y me hacía muy feliz ver cómo una chica, una mamá o una novia sonreía con tanta felicidad al recibir ese ramo. Y gracias a ti, pude ser esa chica… aunque esta vez fui yo la que recibió las flores. 🥹🌻
+
+Yo quisiera haber sido esa persona que te dio ese ramo de los famosos Hot Wheels, pero las circunstancias no me lo permitieron. Sin embargo, estudié por algo jajaja, y con la ayuda de mis conocimientos… y de la IA 😂, hice esto para ti.
+
+Tardé, créeme jajaja. Yo digo que vale más por eso, ¿no? Yiaaaa… 😂💙
+
+Joelito, gracias por llegar a mi vida. Eres una persona muy preciada para mí. Aunque no lo creas, me ayudas muchísimo.
+
+Yo me siento muy sola la mayoría de las veces. Hay muchas cosas que cargo y que casi nunca muestro, pero tú apareciste… y de alguna manera has estado ahí. Me ayudas hasta con las cosas pesadas que cargo, como mis mochilas jajaja, pero también me has ayudado a cargar un poquito con la tristeza que muchas veces llevo por dentro.
+
+Gracias por no dejarme sola. Gracias por hacerme sonreír y por hacerme sentir cómoda cuando hablo contigo. Gracias por estar ahí incluso sin saber cuánto significa para mí.
+
+Te considero una de mis personas favoritas y espero de corazón que nuestra amistad permanezca siempre. Espero que nunca te vayas.
+
+Tú me haces feliz, y yo también quiero devolverte un poquito de toda la felicidad que me das.
+
+Te quiero. 💙
+
+
+  `,
+
+
+  /* NÚCLEO */
+
+  core:{
+    radius:14,
+    pulseSpeed:1.5,
+    pulseAmount:0.04,
+    glowSize:4.2,
+    glowIntensity:0.9
+  },
+
+
+  /* ANILLO */
+
+  ring:{
+    innerRadius:30,
+    outerRadius:46,
+    rotationSpeed:0.15,
+    opacity:0.9,
+    tilt:1.15
+  },
+
+
+  /* GALAXIA */
+
+  galaxy:{
+    stars:5000,
+    mobileStars:2500,
+    photos:14,
+    phrases:22,
+    cameraDistance:260,
+    minDistance:90,
+    maxDistance:480,
+    radius:220,
+    floatSpeed:0.5
+  }
+
+};
+
+
+/* =====================================================
+   TEMAS
+   ===================================================== */
+
+const THEMES = {
+
+  BLUE:{
+    primary:"#0099ff",
+    secondary:"#00cfff",
+    text:"#cdebff"
+  },
+
+  PINK:{
+    primary:"#ff4fa3",
+    secondary:"#ff9ccc",
+    text:"#ffe3f1"
+  },
+
+  PURPLE:{
+    primary:"#9b5cff",
+    secondary:"#d2b0ff",
+    text:"#efe3ff"
+  },
+
+  RED:{
+    primary:"#ff2d4a",
+    secondary:"#ff8a9b",
+    text:"#ffe0e5"
+  },
+
+  GOLD:{
+    primary:"#ffb400",
+    secondary:"#ffe066",
+    text:"#fff4cc"
+  },
+
+  CUSTOM:CONFIG.custom
+
+};
+
+
+const COL =
+  THEMES[CONFIG.theme] ||
+  THEMES.BLUE;
+
+
+const root =
+  document.documentElement.style;
+
+
+root.setProperty(
+  "--primary",
+  COL.primary
+);
+
+root.setProperty(
+  "--secondary",
+  COL.secondary
+);
+
+root.setProperty(
+  "--text",
+  COL.text
+);
+
+
+const $ =
+  id => document.getElementById(id);
+
+
+const isMobile =
+  matchMedia("(max-width:768px)").matches ||
+  "ontouchstart" in window;
+
+
+/* =====================================================
+   TÍTULO
+   ===================================================== */
+
+const titleEl =
+  $("title");
+
+
+titleEl.textContent =
+  CONFIG.title;
+
+
+titleEl.style.fontFamily =
+  CONFIG.titleStyle.font;
+
+
+if(CONFIG.titleStyle.size){
+
+  titleEl.style.fontSize =
+    CONFIG.titleStyle.size;
+
+}
+
+
+if(CONFIG.titleStyle.color){
+
+  titleEl.style.color =
+    CONFIG.titleStyle.color;
+
+}
+
+
+titleEl.style.textShadow =
+`
+0 0 ${CONFIG.titleStyle.glow}px ${COL.primary},
+0 0 ${CONFIG.titleStyle.glow * 2}px ${COL.primary}
+`;
+
+
+/* =====================================================
+   ESTRELLAS 2D
+   ===================================================== */
+
+(function bgStars(){
+
+  const c =
+    $("bgstars");
+
+  const x =
+    c.getContext("2d");
+
+  let w,h,s=[];
+
+
+  function resize(){
+
+    w =
+      c.width =
+      innerWidth;
+
+    h =
+      c.height =
+      innerHeight;
+
+
+    s =
+      Array.from(
+        {length:110},
+        () => ({
+
+          x:Math.random()*w,
+
+          y:Math.random()*h,
+
+          r:Math.random()*1.4+.3,
+
+          p:Math.random()*6
+
+        })
+      );
+
+  }
+
+
+  resize();
+
+
+  addEventListener(
+    "resize",
+    resize
+  );
+
+
+  (function draw(t){
+
+    if(
+      c.classList.contains("hidden")
+    )
+      return;
+
+
+    x.clearRect(
+      0,
+      0,
+      w,
+      h
+    );
+
+
+    for(const a of s){
+
+      x.globalAlpha =
+        .4 +
+        .6 *
+        Math.abs(
+          Math.sin(
+            t/1200+a.p
+          )
+        );
+
+
+      x.fillStyle =
+        "#fff";
+
+
+      x.beginPath();
+
+
+      x.arc(
+        a.x,
+        a.y,
+        a.r,
+        0,
+        7
+      );
+
+
+      x.fill();
+
+    }
+
+
+    requestAnimationFrame(draw);
+
+  })(0);
+
+})();
+
+
+let intentosCorrectos = 0;
+
+
+function tryEnter(){
+
+  const passwordIngresada =
+    $("pw").value;
+
+
+  /* CONTRASEÑA CORRECTA */
+
+  if(
+    passwordIngresada ===
+    CONFIG.password
+  ){
+
+    intentosCorrectos++;
+
+
+    /* PRIMER 1234 */
+
+    if(
+      intentosCorrectos === 1
+    ){
+
+      $("err").textContent =
+        "No 😌";
+
+    }
+
+
+    /* SEGUNDO 1234 */
+
+    else if(
+      intentosCorrectos === 2
+    ){
+
+      $("err").textContent =
+        "Tampoco es esa 😂";
+
+    }
+
+
+    /* TERCER 1234 */
+
+    else if(
+      intentosCorrectos === 3
+    ){
+
+      $("err").textContent =
+        "Ahora sí... 💙";
+
+
+      setTimeout(() => {
+
+        $("pass").classList.add(
+          "out"
+        );
+
+
+        setTimeout(() => {
+
+          $("pass").classList.add(
+            "hidden"
+          );
+
+
+          $("start")
+            .classList
+            .remove("hidden");
+
+
+        },900);
+
+
+      },700);
+
+    }
+
+
+  }
+
+  /* CONTRASEÑA INCORRECTA */
+
+  else{
+
+    $("err").textContent =
+      "¡¡Ya te dije la contraseña!!";
+
+
+    $("pw")
+      .classList
+      .remove("shake");
+
+
+    void $("pw").offsetWidth;
+
+
+    $("pw")
+      .classList
+      .add("shake");
+
+  }
+
+
+  $("pw").value = "";
+
+}
+
+
+/* BOTÓN ENTRAR */
+
+$("enter").onclick =
+  tryEnter;
+
+
+/* ENTER DEL TECLADO */
+
+$("pw").addEventListener(
+  "keydown",
+  e => {
+
+    if(
+      e.key === "Enter"
+    ){
+
+      tryEnter();
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   MÚSICA
+   ===================================================== */
+
+const audio =
+  new Audio(
+    CONFIG.music.src
+  );
+
+
+audio.loop =
+  CONFIG.music.loop;
+
+
+audio.volume =
+  CONFIG.music.volume;
+
+
+$("musicBtn").onclick =
+  () => {
+
+    if(audio.paused){
+
+      audio
+        .play()
+        .catch(()=>{});
+
+
+      $("musicBtn")
+        .classList
+        .add("playing");
+
+    }
+
+    else{
+
+      audio.pause();
+
+
+      $("musicBtn")
+        .classList
+        .remove("playing");
+
+    }
+
+  };
+
+
+/* =====================================================
+   INICIO
+   ===================================================== */
+
+let started =
+  false;
+
+
+$("start").onclick =
+  () => {
+
+    if(started)
+      return;
+
+
+    started =
+      true;
+
+
+    audio
+      .play()
+      .then(
+        () =>
+          $("musicBtn")
+          .classList
+          .add("playing")
+      )
+      .catch(
+        () =>
+          $("musicBtn")
+          .classList
+          .remove("playing")
+      );
+
+
+    $("start")
+      .classList
+      .add("out");
+
+
+    setTimeout(() => {
+
+      $("start")
+        .classList
+        .add("hidden");
+
+
+      $("bgstars")
+        .classList
+        .add("hidden");
+
+
+      initGalaxy();
+
+
+      requestAnimationFrame(
+        () => {
+
+          $("galaxy")
+            .classList
+            .add("on");
+
+
+          $("ui")
+            .classList
+            .add("on");
+
+        }
+      );
+
+
+    },900);
+
+  };
+
+
+/* =====================================================
+   MENSAJE ESPECIAL
+   ===================================================== */
+
+$("mTitle").textContent =
+  CONFIG.messageTitle;
+
+
+$("mBody").innerHTML =
+
+  CONFIG.message
+    .trim()
+    .split(/\n\s*\n/)
+    .map(
+      p =>
+        "<p>" +
+        p
+          .trim()
+          .replace(
+            /\n\s*/g,
+            " "
+          )
+          .replace(
+            /</g,
+            "&lt;"
+          ) +
+        "</p>"
+    )
+    .join("");
+
+
+$("msgBtn").onclick =
+  () =>
+    $("modal")
+    .classList
+    .add("on");
+
+
+$("close").onclick =
+  () =>
+    $("modal")
+    .classList
+    .remove("on");
+
+
+$("modal").addEventListener(
+  "click",
+  e => {
+
+    if(
+      e.target ===
+      $("modal")
+    ){
+
+      $("modal")
+        .classList
+        .remove("on");
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   GALAXIA 3D
+   ===================================================== */
+
+function glowTexture(
+  inner,
+  outer,
+  color
+){
+
+  const c =
+    document.createElement(
+      "canvas"
+    );
+
+
+  c.width =
+    c.height =
+    256;
+
+
+  const g =
+    c.getContext("2d");
+
+
+  const grd =
+    g.createRadialGradient(
+      128,
+      128,
+      0,
+      128,
+      128,
+      128
+    );
+
+
+  grd.addColorStop(
+    0,
+    color
+  );
+
+
+  grd.addColorStop(
+    inner,
+    color
+  );
+
+
+  grd.addColorStop(
+    outer,
+    "rgba(0,0,0,0)"
+  );
+
+
+  grd.addColorStop(
+    1,
+    "rgba(0,0,0,0)"
+  );
+
+
+  g.fillStyle =
+    grd;
+
+
+  g.fillRect(
+    0,
+    0,
+    256,
+    256
+  );
+
+
+  return new THREE.CanvasTexture(c);
+
+}
+
+
+function ringTexture(){
+
+  const c =
+    document.createElement(
+      "canvas"
+    );
+
+
+  c.width =
+    c.height =
+    512;
+
+
+  const g =
+    c.getContext("2d");
+
+
+  const R =
+    CONFIG.ring;
+
+
+  const a =
+    R.innerRadius /
+    R.outerRadius;
+
+
+  const grd =
+    g.createRadialGradient(
+      256,
+      256,
+      256*a,
+      256,
+      256,
+      256
+    );
+
+
+  grd.addColorStop(
+    0,
+    "rgba(0,0,0,0)"
+  );
+
+
+  grd.addColorStop(
+    .15,
+    COL.secondary
+  );
+
+
+  grd.addColorStop(
+    .45,
+    COL.primary
+  );
+
+
+  grd.addColorStop(
+    1,
+    "rgba(0,0,0,0)"
+  );
+
+
+  g.fillStyle =
+    grd;
+
+
+  g.fillRect(
+    0,
+    0,
+    512,
+    512
+  );
+
+
+  return new THREE.CanvasTexture(c);
+
+}
+
+
+function phraseTexture(text){
+
+  const S =
+    CONFIG.phraseStyle;
+
+
+  const c =
+    document.createElement(
+      "canvas"
+    );
+
+
+  const g =
+    c.getContext("2d");
+
+
+  g.font =
+    `${S.size}px ${S.font}`;
+
+
+  const w =
+    Math.ceil(
+      g.measureText(text).width
+    ) + 60;
+
+
+  const h =
+    S.size + 50;
+
+
+  c.width =
+    w;
+
+
+  c.height =
+    h;
+
+
+  g.font =
+    `${S.size}px ${S.font}`;
+
+
+  g.textAlign =
+    "center";
+
+
+  g.textBaseline =
+    "middle";
+
+
+  g.shadowColor =
+    COL.primary;
+
+
+  g.shadowBlur =
+    S.glow;
+
+
+  g.fillStyle =
+    COL.text;
+
+
+  g.fillText(
+    text,
+    w/2,
+    h/2
+  );
+
+
+  const t =
+    new THREE.CanvasTexture(c);
+
+
+  t.userData = {
+    aspect:w/h
+  };
+
+
+  return t;
+
+}
+
+
+function placeholderTexture(i){
+
+  const c =
+    document.createElement(
+      "canvas"
+    );
+
+
+  c.width =
+    300;
+
+
+  c.height =
+    380;
+
+
+  const g =
+    c.getContext("2d");
+
+
+  g.fillStyle =
+    "#0a1428";
+
+
+  g.fillRect(
+    0,
+    0,
+    300,
+    380
+  );
+
+
+  g.strokeStyle =
+    COL.primary;
+
+
+  g.lineWidth =
+    6;
+
+
+  g.strokeRect(
+    3,
+    3,
+    294,
+    374
+  );
+
+
+  g.font =
+    "90px serif";
+
+
+  g.textAlign =
+    "center";
+
+
+  g.fillText(
+    "💙",
+    150,
+    210
+  );
+
+
+  const t =
+    new THREE.CanvasTexture(c);
+
+
+  t.userData = {
+    aspect:300/380
+  };
+
+
+  return t;
+
+}
+
+
+function photoTexture(img){
+
+  const B =
+    CONFIG.photoStyle.border;
+
+
+  const max =
+    512;
+
+
+  const k =
+    Math.min(
+      1,
+      max /
+      Math.max(
+        img.width,
+        img.height
+      )
+    );
+
+
+  const w =
+    Math.round(
+      img.width*k
+    );
+
+
+  const h =
+    Math.round(
+      img.height*k
+    );
+
+
+  const c =
+    document.createElement(
+      "canvas"
+    );
+
+
+  c.width =
+    w+B*4;
+
+
+  c.height =
+    h+B*4;
+
+
+  const g =
+    c.getContext("2d");
+
+
+  g.shadowColor =
+    COL.primary;
+
+
+  g.shadowBlur =
+    B*3;
+
+
+  g.fillStyle =
+    COL.secondary;
+
+
+  g.fillRect(
+    B,
+    B,
+    w+B*2,
+    h+B*2
+  );
+
+
+  g.shadowBlur =
+    0;
+
+
+  g.drawImage(
+    img,
+    B*2,
+    B*2,
+    w,
+    h
+  );
+
+
+  const t =
+    new THREE.CanvasTexture(c);
+
+
+  t.userData = {
+    aspect:
+      c.width /
+      c.height
+  };
+
+
+  return t;
+
+}
+
+
+function loadPhoto(src, i){
+  return new Promise(resolve => {
+    const img = document.createElement("img");
+
+    img.onload = function(){
+
+      const texture = new THREE.Texture();
+
+      texture.image = img;
+      texture.needsUpdate = true;
+
+      // Evita problemas de WebGL con archivos locales
+      texture.generateMipmaps = false;
+      texture.minFilter = THREE.LinearFilter;
+      texture.magFilter = THREE.LinearFilter;
+      texture.wrapS = THREE.ClampToEdgeWrapping;
+      texture.wrapT = THREE.ClampToEdgeWrapping;
+
+      texture.userData = {
+        aspect: img.naturalWidth / img.naturalHeight
+      };
+
+      console.log("✅ Foto cargada:", src);
+
+      resolve(texture);
+    };
+
+    img.onerror = function(){
+      console.error("❌ No se pudo cargar:", src);
+      resolve(placeholderTexture(i));
+    };
+
+    img.src = src;
+  });
+}
+
+/* =====================================================
+   INICIAR GALAXIA
+   ===================================================== */
+
+async function initGalaxy(){
+
+  const box =
+    $("galaxy");
+
+
+  const G =
+    CONFIG.galaxy;
+
+
+  const scene =
+    new THREE.Scene();
+
+
+  const camera =
+    new THREE.PerspectiveCamera(
+      60,
+      innerWidth/innerHeight,
+      1,
+      2000
+    );
+
+
+  const renderer =
+    new THREE.WebGLRenderer({
+
+      antialias:!isMobile,
+
+      alpha:false
+
+    });
+
+
+  renderer.setPixelRatio(
+    Math.min(
+      devicePixelRatio,
+      isMobile ? 1.5 : 2
+    )
+  );
+
+
+  renderer.setSize(
+    innerWidth,
+    innerHeight
+  );
+
+
+  renderer.setClearColor(
+    0x000000
+  );
+
+
+  box.appendChild(
+    renderer.domElement
+  );
+
+
+  const world =
+    new THREE.Group();
+
+
+  scene.add(world);
+
+
+  const additive = {
+
+    transparent:true,
+
+    blending:
+      THREE.AdditiveBlending,
+
+    depthWrite:false
+
+  };
+
+
+  /* ===================================================
+     ESTRELLAS
+     =================================================== */
+
+  const n =
+    isMobile
+      ? G.mobileStars
+      : G.stars;
+
+
+  const pos =
+    new Float32Array(n*3);
+
+
+  const colr =
+    new Float32Array(n*3);
+
+
+  const c1 =
+    new THREE.Color(
+      COL.secondary
+    );
+
+
+  const c2 =
+    new THREE.Color(
+      "#ffffff"
+    );
+
+
+  const c3 =
+    new THREE.Color(
+      COL.primary
+    );
+
+
+  for(
+    let i=0;
+    i<n;
+    i++
+  ){
+
+    const r =
+      Math.pow(
+        Math.random(),
+        .7
+      ) *
+      G.radius *
+      1.5;
+
+
+    const arm =
+      (i%3) *
+      2.094;
+
+
+    const ang =
+      r*.02 +
+      arm +
+      (Math.random()-.5)*.8;
+
+
+    pos[i*3] =
+      Math.cos(ang)*r +
+      (Math.random()-.5)*20;
+
+
+    pos[i*3+1] =
+      (Math.random()-.5) *
+      (30+r*.25);
+
+
+    pos[i*3+2] =
+      Math.sin(ang)*r +
+      (Math.random()-.5)*20;
+
+
+    const m =
+      Math.random()<.4
+        ? c2
+        : (
+            Math.random()<.5
+              ? c1
+              : c3
+          );
+
+
+    colr.set(
+      [m.r,m.g,m.b],
+      i*3
+    );
+
+  }
+
+
+  const sg =
+    new THREE.BufferGeometry();
+
+
+  sg.setAttribute(
+    "position",
+    new THREE.BufferAttribute(
+      pos,
+      3
+    )
+  );
+
+
+  sg.setAttribute(
+    "color",
+    new THREE.BufferAttribute(
+      colr,
+      3
+    )
+  );
+
+
+  const stars =
+    new THREE.Points(
+
+      sg,
+
+      new THREE.PointsMaterial({
+
+        size:1.6,
+
+        vertexColors:true,
+
+        ...additive
+
+      })
+
+    );
+
+
+  world.add(stars);
+
+
+  /* ===================================================
+     NÚCLEO
+     =================================================== */
+
+  const core =
+    new THREE.Mesh(
+
+      new THREE.SphereGeometry(
+        CONFIG.core.radius,
+        48,
+        48
+      ),
+
+      new THREE.MeshBasicMaterial({
+        color:0x000000
+      })
+
+    );
+
+
+  world.add(core);
+
+
+  const glow =
+    new THREE.Sprite(
+
+      new THREE.SpriteMaterial({
+
+        map:
+          glowTexture(
+            .25,
+            .55,
+            COL.primary
+          ),
+
+        opacity:
+          CONFIG.core.glowIntensity,
+
+        ...additive
+
+      })
+
+    );
+
+
+  glow.scale.setScalar(
+    CONFIG.core.radius *
+    2 *
+    CONFIG.core.glowSize
+  );
+
+
+  world.add(glow);
+
+
+  /* ===================================================
+     ANILLO
+     =================================================== */
+
+  const R =
+    CONFIG.ring;
+
+
+  const ring =
+    new THREE.Mesh(
+
+      new THREE.PlaneGeometry(
+        R.outerRadius*2,
+        R.outerRadius*2
+      ),
+
+      new THREE.MeshBasicMaterial({
+
+        map:ringTexture(),
+
+        opacity:R.opacity,
+
+        side:
+          THREE.DoubleSide,
+
+        ...additive
+
+      })
+
+    );
+
+
+  const ringPivot =
+    new THREE.Group();
+
+
+  ringPivot.rotation.x =
+    Math.PI/2 -
+    R.tilt +
+    .4;
+
+
+  ringPivot.add(
+    ring
+  );
+
+
+  ring.rotation.z =
+    0;
+
+
+  world.add(
+    ringPivot
+  );
+
+
+  const ringHalo =
+    new THREE.Sprite(
+
+      new THREE.SpriteMaterial({
+
+        map:
+          glowTexture(
+            .55,
+            .9,
+            COL.primary
+          ),
+
+        opacity:.25,
+
+        ...additive
+
+      })
+
+    );
+
+
+  ringHalo.scale.setScalar(
+    R.outerRadius*3.2
+  );
+
+
+  world.add(
+    ringHalo
+  );
+
+
+  /* ===================================================
+     FOTOS Y FRASES
+     =================================================== */
+
+  const items = [];
+
+
+  function place(
+    sprite,
+    w,
+    h
+  ){
+
+    const r =
+      CONFIG.galaxy.radius *
+      (
+        .45 +
+        Math.random()*.55
+      );
+
+
+    const a =
+      Math.random() *
+      Math.PI *
+      2;
+
+
+    sprite.position.set(
+
+      Math.cos(a)*r,
+
+      (Math.random()-.5) *
+      r*.45,
+
+      Math.sin(a)*r
+
+    );
+
+
+    sprite.scale.set(
+      w,
+      h,
+      1
+    );
+
+
+    world.add(
+      sprite
+    );
+
+
+    items.push({
+
+      s:sprite,
+
+      y:sprite.position.y,
+
+      ph:Math.random()*6.28,
+
+      sp:.6+
+        Math.random()*.8
+
+    });
+
+  }
+
+
+  /* CARGAR FOTOS */
+
+  const photoTex =
+    await Promise.all(
+      CONFIG.photos.map(
+        loadPhoto
+      )
+    );
+
+
+  const photoMats =
+    photoTex.map(
+
+      t =>
+        new THREE.SpriteMaterial({
+
+          map:t,
+
+          ...additive,
+
+          blending:
+            THREE.NormalBlending,
+
+          transparent:true
+
+        })
+
+    );
+
+
+  for(
+    let i=0;
+    i<G.photos &&
+    photoMats.length;
+    i++
+  ){
+
+    const k =
+      i %
+      photoMats.length;
+
+
+    const asp =
+      photoTex[k]
+        .userData
+        .aspect;
+
+
+    const h =
+      CONFIG.photoStyle.baseSize *
+      (
+        1+
+        (
+          Math.random()*2-1
+        ) *
+        CONFIG.photoStyle
+          .sizeVariation
+      );
+
+
+    place(
+
+      new THREE.Sprite(
+        photoMats[k]
+      ),
+
+      h*asp,
+      h
+
+    );
+
+  }
+
+
+  /* FRASES */
+
+  const phraseTex =
+    CONFIG.phrases.map(
+      phraseTexture
+    );
+
+
+  const phraseMats =
+    phraseTex.map(
+
+      t =>
+        new THREE.SpriteMaterial({
+
+          map:t,
+
+          opacity:
+            CONFIG.phraseStyle
+              .opacity,
+
+          ...additive
+
+        })
+
+    );
+
+
+  for(
+    let i=0;
+    i<G.phrases &&
+    phraseMats.length;
+    i++
+  ){
+
+    const k =
+      i %
+      phraseMats.length;
+
+
+    const h =
+      9+
+      Math.random()*4;
+
+
+    place(
+
+      new THREE.Sprite(
+        phraseMats[k]
+      ),
+
+      h *
+      phraseTex[k]
+        .userData
+        .aspect,
+
+      h
+
+    );
+
+  }
+
+
+  /* ===================================================
+     CONTROLES
+     =================================================== */
+
+  let rotY=0,
+      rotX=.35,
+      vY=0,
+      vX=0,
+      dist=G.cameraDistance,
+      targetDist=dist;
+
+
+  const pts =
+    new Map();
+
+
+  let lastPinch=0;
+
+
+  const el =
+    renderer.domElement;
+
+
+  el.addEventListener(
+    "pointerdown",
+    e => {
+
+      el.setPointerCapture(
+        e.pointerId
+      );
+
+
+      pts.set(
+        e.pointerId,
+        {
+          x:e.clientX,
+          y:e.clientY
+        }
+      );
+
+    }
+  );
+
+
+  el.addEventListener(
+    "pointermove",
+    e => {
+
+      const p =
+        pts.get(
+          e.pointerId
+        );
+
+
+      if(!p)
+        return;
+
+
+      if(
+        pts.size===1
+      ){
+
+        vY =
+          (
+            e.clientX-p.x
+          )*.0035;
+
+
+        vX =
+          (
+            e.clientY-p.y
+          )*.0035;
+
+
+        rotY +=
+          vY;
+
+
+        rotX +=
+          vX;
+
+      }
+
+
+      else if(
+        pts.size===2
+      ){
+
+        pts.set(
+          e.pointerId,
+          {
+            x:e.clientX,
+            y:e.clientY
+          }
+        );
+
+
+        const [
+          a,
+          b
+        ] =
+          [...pts.values()];
+
+
+        const d =
+          Math.hypot(
+            a.x-b.x,
+            a.y-b.y
+          );
+
+
+        if(lastPinch){
+
+          targetDist -=
+            (
+              d-lastPinch
+            )*1.6;
+
+        }
+
+
+        lastPinch =
+          d;
+
+
+        return;
+
+      }
+
+
+      pts.set(
+        e.pointerId,
+        {
+          x:e.clientX,
+          y:e.clientY
+        }
+      );
+
+    }
+  );
+
+
+  const up =
+    e => {
+
+      pts.delete(
+        e.pointerId
+      );
+
+      lastPinch=0;
+
+    };
+
+
+  el.addEventListener(
+    "pointerup",
+    up
+  );
+
+
+  el.addEventListener(
+    "pointercancel",
+    up
+  );
+
+
+  el.addEventListener(
+    "wheel",
+    e => {
+
+      e.preventDefault();
+
+
+      targetDist +=
+        e.deltaY*.25;
+
+    },
+    {
+      passive:false
+    }
+  );
+
+
+  /* ===================================================
+     REDIMENSIONAR
+     =================================================== */
+
+  addEventListener(
+    "resize",
+    () => {
+
+      camera.aspect =
+        innerWidth /
+        innerHeight;
+
+
+      camera.updateProjectionMatrix();
+
+
+      renderer.setSize(
+        innerWidth,
+        innerHeight
+      );
+
+    }
+  );
+
+
+  /* ===================================================
+     ANIMACIÓN
+     =================================================== */
+
+  const clock =
+    new THREE.Clock();
+
+
+  (function loop(){
+
+    requestAnimationFrame(
+      loop
+    );
+
+
+    const dt =
+      Math.min(
+        clock.getDelta(),
+        .05
+      );
+
+
+    const t =
+      clock.elapsedTime;
+
+
+    if(
+      pts.size===0
+    ){
+
+      rotY +=
+        vY;
+
+
+      rotX +=
+        vX;
+
+
+      vY *= .95;
+
+      vX *= .95;
+
+
+      rotY +=
+        dt*.03;
+
+    }
+
+
+    rotX =
+      Math.max(
+        -1.2,
+        Math.min(
+          1.2,
+          rotX
+        )
+      );
+
+
+    targetDist =
+      Math.max(
+        G.minDistance,
+        Math.min(
+          G.maxDistance,
+          targetDist
+        )
+      );
+
+
+    dist +=
+      (
+        targetDist-dist
+      )*.08;
+
+
+    world.rotation.set(
+      rotX,
+      rotY,
+      0
+    );
+
+
+    camera.position.set(
+      0,
+      0,
+      dist
+    );
+
+
+    camera.lookAt(
+      0,
+      0,
+      0
+    );
+
+
+    /* PULSO DEL NÚCLEO */
+
+    const pulse =
+      1+
+      Math.sin(
+        t *
+        CONFIG.core
+          .pulseSpeed
+      ) *
+      CONFIG.core
+        .pulseAmount;
+
+
+    core.scale.setScalar(
+      pulse
+    );
+
+
+    glow.scale.setScalar(
+
+      CONFIG.core.radius *
+      2 *
+      CONFIG.core.glowSize *
+      pulse
+
+    );
+
+
+    ring.rotation.z +=
+      dt *
+      R.rotationSpeed;
+
+
+    /* FLOTACIÓN DE FOTOS Y FRASES */
+
+    for(
+      const it of items
+    ){
+
+      it.s.position.y =
+        it.y +
+        Math.sin(
+          t *
+          it.sp *
+          G.floatSpeed +
+          it.ph
+        ) *
+        4;
+
+    }
+
+
+    renderer.render(
+      scene,
+      camera
+    );
+
+  })();
+
+}
+
+</script>
+
+</body>
+</html>
